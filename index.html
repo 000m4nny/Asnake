@@ -6,37 +6,33 @@
   <title>Homework Planner</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.css" rel="stylesheet">
 </head>
 <body>
-  <div id="calendar-container">
-    <div id="calendar"></div>
-    <div id="task-form" style="display: none;">
-      <h2>Add Homework</h2>
-      <label for="subject">Subject</label>
-      <select id="subject">
-        <option value="History I">History I</option>
-        <option value="Physics I Honors">Physics I Honors</option>
-        <option value="Pre-Calculus Honors">Pre-Calculus Honors</option>
-        <option value="Theology">Theology</option>
-        <option value="English III">English III</option>
-        <option value="French II">French II</option>
-        <option value="General">General</option>
-      </select><br>
-      <label for="due-date">Due Date</label>
-      <input type="date" id="due-date"><br>
-      <label for="type">Type</label>
-      <select id="type">
+  <div id="calendar"></div>
+  
+  <!-- Task Form -->
+  <div id="task-form" style="display:none;">
+    <h3>Add Homework</h3>
+    <form id="task-form-content">
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" required><br>
+      <label for="due-date">Due Date:</label>
+      <input type="date" id="due-date" required><br>
+      <label for="type">Type:</label>
+      <select id="type" required>
         <option value="Homework">Homework</option>
         <option value="Test">Test</option>
         <option value="Quiz">Quiz</option>
         <option value="Project">Project</option>
         <option value="Exam">Exam</option>
       </select><br>
-      <button id="save-task">Save Task</button>
-    </div>
+      <button type="button" id="save-task">Save Task</button>
+    </form>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/fullcalendar.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
