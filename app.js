@@ -1,47 +1,38 @@
-// Globals
-const calendarView = document.getElementById("calendar-view");
-const todayView = document.getElementById("today-view");
-const todayTaskList = document.getElementById("today-task-list");
-const addTaskBtn = document.getElementById("add-task-btn");
-const addTaskModal = document.getElementById("add-task-modal");
-const taskForm = document.getElementById("task-form");
-const cancelTaskBtn = document.getElementById("cancel-task-btn");
+// Initialize FullCalendar
+$(document).ready(function() {
+  $('#calendar').fullCalendar({
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay'
+    },
+    events: [],
+    dayClick: function(date) {
+      $('#task-form').show();
+      $('#due-date').val(date.format('YYYY-MM-DD'));
+    }
+  });
 
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  // Handle saving a new task
+  $('#save-task').click(function() {
+    const subject = $('#subject').val();
+    const dueDate = $('#due-date').val();
+    const type = $('#type').val();
 
-// Utility Functions
-function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+    const newEvent = {
+      title: `${subject} - ${type}`,
+      start: dueDate,
+      color: '#ff5733',
+    };
 
-function renderTodayTasks() {
-  todayTaskList.innerHTML = "";
-  const today = new Date().toISOString().split("T")[0];
-  tasks
-    .filter(task => task.dueDate === today)
-    .forEach(task => {
-      const li = document.createElement("li");
-      li.textContent = `${task.subject} - ${task.type}`;
-      todayTaskList.appendChild(li);
-    });
-}
+    $('#calendar').fullCalendar('renderEvent', newEvent, true);
+    localStorage.setItem('planner', JSON.stringify($('#calendar').fullCalendar('clientEvents')));
+    $('#task-form').hide();
+  });
 
-// Event Listeners
-addTaskBtn.addEventListener("click", () => addTaskModal.classList.remove("hidden"));
-
-cancelTaskBtn.addEventListener("click", () => addTaskModal.classList.add("hidden"));
-
-taskForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const subject = document.getElementById("subject").value;
-  const taskType = document.getElementById("task-type").value;
-  const dueDate = document.getElementById("due-date").value;
-  tasks.push({ subject, type: taskType, dueDate });
-  saveTasks();
-  renderTodayTasks();
-  addTaskModal.classList.add("hidden");
-  alert("Task Saved!");
+  // Load saved tasks
+  const savedTasks = JSON.parse(localStorage.getItem('planner')) || [];
+  savedTasks.forEach(task => {
+    $('#calendar').fullCalendar('renderEvent', task, true);
+  });
 });
-
-// Initial Render
-renderTodayTasks();
