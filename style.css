@@ -1,52 +1,38 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: #fff;
+  background-color: #1e1e1e;
+  color: white;
   margin: 0;
   padding: 0;
 }
 
-#calendar-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
 #calendar {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 50px auto;
 }
 
 #task-form {
   background-color: #333;
-  color: white;
   padding: 20px;
   border-radius: 5px;
-  max-width: 400px;
-  margin: 10px auto;
+  margin-top: 30px;
 }
 
-select, input {
-  background-color: #444;
-  color: white;
-  border: 1px solid #666;
-  padding: 8px;
-  margin: 5px 0;
+#task-form input, #task-form select {
+  margin-bottom: 10px;
+  padding: 5px;
   width: 100%;
 }
 
 button {
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: white;
-  padding: 10px 20px;
+  padding: 10px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  width: 100%;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #45a049;
 }
