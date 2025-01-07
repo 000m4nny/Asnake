@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homework Planner</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Homework Planner</h1>
+    <div class="view-switcher">
+      <button id="calendar-view-btn">Calendar View</button>
+      <button id="today-view-btn">Today View</button>
+    </div>
+  </header>
+  <main id="app">
+    <div id="calendar-view" class="view">
+      <!-- Calendar will be dynamically generated here -->
+    </div>
+    <div id="today-view" class="view hidden">
+      <h2>Tasks for Today</h2>
+      <ul id="today-task-list"></ul>
+    </div>
+    <button id="add-task-btn">+</button>
+  </main>
+  <div id="add-task-modal" class="hidden">
+    <div class="modal-content">
+      <h3>Add Homework</h3>
+      <form id="task-form">
+        <label for="subject">Subject:</label>
+        <select id="subject" required>
+          <option value="History I">History I</option>
+          <option value="Physics I Honors">Physics I Honors</option>
+          <option value="Pre-Calculus Honors">Pre-Calculus Honors</option>
+          <option value="Theology">Theology</option>
+          <option value="English III">English III</option>
+          <option value="French II">French II</option>
+          <option value="General">General</option>
+        </select>
+        <label for="task-type">Type:</label>
+        <select id="task-type" required>
+          <option value="Homework">Homework</option>
+          <option value="Quiz">Quiz</option>
+          <option value="Test">Test</option>
+          <option value="Project">Project</option>
+          <option value="Exam">Exam</option>
+        </select>
+        <label for="due-date">Due Date:</label>
+        <input type="date" id="due-date" required>
+        <button type="submit">Save</button>
+        <button type="button" id="cancel-task-btn">Cancel</button>
+      </form>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
